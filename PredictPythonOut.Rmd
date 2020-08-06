@@ -1,0 +1,263 @@
+---
+title: "Untitled"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## R Markdown
+
+
+```{r pckgs}
+
+library(reticulate)
+library(dplyr)
+library(gt)
+library(ggplot2)
+
+```
+
+
+
+
+```{python, echo=TRUE}
+
+import pandas as pd
+import numpy as np
+
+AnalyticalDS = pd.read_csv('AnalysisDS.csv')
+
+```
+
+```{r showR}
+
+R_plt = py$AnalyticalDS %>% 
+  filter(LastSeason != "2019-20" ) %>% 
+  tidyr::gather(Var, Val, mp, NumberOfSeasons) %>% 
+  filter(!is.na(Val)) %>% 
+  ggplot(., aes(x = Val)) +
+  geom_density() +
+  theme_classic() +
+  facet_wrap(~Var, scales = "free")
+R_plt
+
+```
+
+
+First, we get the variable names. 
+
+
+```{python mltData , echo = TRUE}
+
+Dimension = AnalyticalDS.shape
+
+print(Dimension)
+
+```
+
+
+```{python DenPymp}
+
+import seaborn as sns
+
+sns.distplot(AnalyticalDS['mp'], hist = False)
+
+```
+
+```{python DenPyNS}
+
+import seaborn as sns
+
+sns.distplot(AnalyticalDS['NumberOfSeasons'], hist = False)
+
+```
+
+
+The next step is to finalize the dataset, the training dataset, and then the testing dataset. We first need to select the variables of interest, and then divide the data up. 
+
+```{python flt, echo = TRUE}
+
+AboveMP_zero = AnalyticalDS['mp'] > 0
+NotCurrent = AnalyticalDS['LastSeason'] != "2019-20"
+AnalyticalDS_2 = AnalyticalDS[AboveMP_zero]
+AnalyticalDS_2_a = AnalyticalDS_2[NotCurrent]
+
+AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fga', 'ftpercent', 'FirstSeasonMP', 'PickNumber', 'fga', 'x3p', 'x3pa', 'x3ppercent', 'x2p' , 
+'x2pa', 'x2ppercent', 'fgpercent', 'ft', 'fta', 'efgpercent', 'orb', 'drb', 'trb', 'ast', 'stl', 'blk', 'tov', 'pts','wprev', 'w_lpercentprev',  'wcur', 'w_lpercentcur']]
+
+```
+
+
+```{python CheckMissing}
+
+AnalyticDS_4 = AnalyticDS_3.dropna()
+
+CheckSize = AnalyticDS_4.shape
+
+
+```
+
+```{python slct , eval = TRUE}
+
+from sklearn import preprocessing
+
+
+Features = AnalyticDS_4.drop(['mp', 'PickNumber', 'link'], axis=1)
+#MainVar = np.array( AnalyticDS_4[['mp']] )
+MainVar =  AnalyticDS_4[['mp', 'link']] 
+PickNumber = AnalyticDS_4[['PickNumber', 'link']] 
+
+conditions = [
+    (PickNumber['PickNumber'] <= 5),
+    (PickNumber['PickNumber'] > 5) & (PickNumber['PickNumber'] <= 16),
+    (PickNumber['PickNumber'] > 16) & (PickNumber['PickNumber'] <= 30),
+    (PickNumber['PickNumber'] > 30)
+    ]
+
+values = [ 'round_1_early', 'round_1_mid','round_1_late', 'round_2']
+
+# create a new column and use np.select to assign values to it using our lists as arguments
+PickNumber['DraftCat'] = np.select(conditions, values)
+
+PickNumberDummy = pd.get_dummies(PickNumber, columns=['DraftCat'])
+
+Analytic_scaled = preprocessing.scale(Features)
+Analytic_scaled_df_a = pd.DataFrame(data=Analytic_scaled) 
+
+
+Analytic_scaled_df_a.reset_index(drop=True, inplace=True)
+MainVar.reset_index(drop = True, inplace = True)
+
+Analytical_scaled_b = pd.concat([MainVar, Analytic_scaled_df_a], axis= 1, ignore_index = True)
+Analytical_scaled_c = Analytical_scaled_b.rename(columns={1: "link", 0: "mp"})
+
+Analytic_scaled_df = pd.merge(PickNumberDummy,Analytical_scaled_c,on='link')
+
+# Analytic_scaled_df = pd.concat([Analytic_scaled_df_a, PickNumberDummy_lnk], axis = 1, ignore_index=True)
+
+
+
+```
+
+
+
+```{python }
+
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+
+AnalyticsSplit = Analytic_scaled_df.drop(['mp' , 'link'], axis=1)
+Depend = Analytic_scaled_df[['mp']]
+
+Depend2 = np.array( Depend[['mp']] )
+
+X_trainDF, X_testDF, Y_trainDF, Y_testDF = train_test_split(AnalyticsSplit,
+Depend2, test_size=0.3, random_state = 0)
+# 
+X_trainDF_2 = X_trainDF.drop('PickNumber', 1)
+X_test_DF_2 = X_testDF.drop('PickNumber', 1)
+
+regressor = RandomForestRegressor(n_estimators = 10, random_state = 32)
+Results = regressor.fit(X_trainDF_2, Y_trainDF)
+#
+predictions = regressor.predict(X_test_DF_2)
+
+```
+
+```{python Baseline}
+
+# 
+# Baseline_a = pd.DataFrame(X_trainDF[['round_1_early', 'round_1_mid','round_1_late', 'round_2']])
+# 
+
+Y_trainDF_DF = pd.DataFrame(Y_trainDF)
+
+Y_trainDF_DF.reset_index(drop=True, inplace=True)
+X_trainDF.reset_index(drop = True, inplace = True)
+
+Baseline_a = pd.concat([X_trainDF[['PickNumber']], Y_trainDF_DF],  axis= 1, ignore_index = True)
+
+Baseline_b = Baseline_a.rename(columns={0: "PickNumber"})
+
+
+conditions2 = [
+    (Baseline_b['PickNumber'] <= 5),
+    (Baseline_b['PickNumber'] > 5) & (Baseline_b['PickNumber'] <= 16),
+    (Baseline_b['PickNumber'] > 16) & (Baseline_b['PickNumber'] <= 30),
+    (Baseline_b['PickNumber'] > 30)
+    ]
+    
+conditions3 = [
+    (X_testDF['PickNumber'] <= 5),
+    (X_testDF['PickNumber'] > 5) & (X_testDF['PickNumber'] <= 16),
+    (X_testDF['PickNumber'] > 16) & (X_testDF['PickNumber'] <= 30),
+    (X_testDF['PickNumber'] > 30)
+    ]    
+
+
+Baseline_b['DraftCat'] = np.select(conditions2, values)
+
+Baseline = Baseline_b.groupby(['DraftCat']).mean('mp')
+
+
+X_testDF['DraftCat'] = np.select(conditions3, values)
+Baseline_f = pd.merge(X_testDF['DraftCat'],Baseline,on='DraftCat')
+
+
+```
+
+
+```{python lassobt , results = 'hide'}
+
+from sklearn.linear_model import Lasso
+from sklearn.model_selection import GridSearchCV
+from sklearn.utils import resample
+from sklearn.linear_model import LinearRegression
+
+parameters = {'alpha': [1e-15,1e-10, 1e-8, 1e-4, 1e-3, 1e-2, 1, 5, 10, 20 ]}
+n_iterations = 10
+# run bootstrap
+seed=42
+np.random.seed(seed)
+stats = list()
+for i in range(n_iterations):
+  # prepare train and test sets
+	X, y = resample(X_trainDF_2, Y_trainDF)
+	lasso = Lasso()
+	lasso_regressor = GridSearchCV(lasso, parameters,scoring = 'neg_mean_squared_error', cv = 5)
+	lasso_regressor.fit( X , y)
+	predictions = lasso_regressor.predict(X_test_DF_2)
+	stats.append(predictions)
+
+df = pd.DataFrame(stats)
+df2 = pd.melt(df)
+MnLasso = df2.groupby(['variable']).mean()
+
+	
+```	
+	
+```{python BsLasso}
+
+lasso_rg = Lasso()
+lasso_reg = GridSearchCV(lasso_rg, parameters,scoring = 'neg_mean_squared_error', cv = 5)
+# 
+lasso_reg.fit( X_trainDF_2 , Y_trainDF)
+predictions_lasso = lasso_reg.predict(X_test_DF_2)
+
+```
+	
+
+```{python evalMdls , eval = TRUE}
+
+RF = pd.DataFrame(predictions)
+OneLasso = pd.DataFrame(predictions_lasso)
+Actuals = pd.DataFrame(Y_testDF)
+Eval = pd.concat([RF, MnLasso, OneLasso, Baseline_f[[1]], Actuals ] , axis=1, ignore_index=True)
+
+Eval.head(10)
+print( Eval.shape )
+
+```
+
