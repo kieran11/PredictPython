@@ -143,7 +143,7 @@ Analytic_scaled_df = pd.merge(PickNumberDummy,Analytical_scaled_c,on='link')
 
 
 
-```{python }
+```{python , results = 'hide'}
 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
@@ -166,7 +166,7 @@ predictions = regressor.predict(X_test_DF_2)
 
 ```
 
-```{python Baseline}
+```{python Baseline, results = 'hide'}
 
 # 
 # Baseline_a = pd.DataFrame(X_trainDF[['round_1_early', 'round_1_mid','round_1_late', 'round_2']])
@@ -209,7 +209,7 @@ Baseline_f = pd.merge(X_testDF['DraftCat'],Baseline,on='DraftCat')
 ```
 
 
-```{python lassobt , results = 'hide'}
+```{python lassobt , results = 'hide', cache = FALSE}
 
 from sklearn.linear_model import Lasso
 from sklearn.model_selection import GridSearchCV
@@ -217,7 +217,7 @@ from sklearn.utils import resample
 from sklearn.linear_model import LinearRegression
 
 parameters = {'alpha': [1e-15,1e-10, 1e-8, 1e-4, 1e-3, 1e-2, 1, 5, 10, 20 ]}
-n_iterations = 10
+n_iterations = 100
 # run bootstrap
 seed=42
 np.random.seed(seed)
@@ -238,7 +238,7 @@ MnLasso = df2.groupby(['variable']).mean()
 	
 ```	
 	
-```{python BsLasso}
+```{python BsLasso, results = 'hide'}
 
 lasso_rg = Lasso()
 lasso_reg = GridSearchCV(lasso_rg, parameters,scoring = 'neg_mean_squared_error', cv = 5)
@@ -249,15 +249,34 @@ predictions_lasso = lasso_reg.predict(X_test_DF_2)
 ```
 	
 
-```{python evalMdls , eval = TRUE}
+```{python evalMdls , eval = TRUE, results = 'hide'}
+
+import statistics
 
 RF = pd.DataFrame(predictions)
 OneLasso = pd.DataFrame(predictions_lasso)
 Actuals = pd.DataFrame(Y_testDF)
 Eval = pd.concat([RF, MnLasso, OneLasso, Baseline_f[[1]], Actuals ] , axis=1, ignore_index=True)
 
-Eval.head(10)
-print( Eval.shape )
+Rslts = list()
+
+for i in range(4):
+  Diff = statistics.mean( abs( Eval[i] - Eval[4] ) )
+  Rslts.append(Diff)
+
+
+Nms = ['Random_Forest', 'Bootstrapped_Lasso', 'Lasso', 'Baseline', 'Actuals'] 
+EvaluationsFinal = pd.DataFrame(list(zip( Nms, Rslts)), 
+               columns =['Model Name', 'Mean Absolute Error'])
+
 
 ```
+
+```{r}
+
+py$EvaluationsFinal %>% 
+  gt()
+
+```
+
 

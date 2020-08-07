@@ -53,118 +53,437 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
     ## 
     ## See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/bin/python:1: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples,), for example using ravel().
+<!--html_preserve-->
 
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/bin/python:1: SettingWithCopyWarning: 
-    ## A value is trying to be set on a copy of a slice from a DataFrame.
-    ## Try using .loc[row_indexer,col_indexer] = value instead
-    ## 
-    ## See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
 
-    ## GridSearchCV(cv=5, estimator=Lasso(),
-    ##              param_grid={'alpha': [1e-15, 1e-10, 1e-08, 0.0001, 0.001, 0.01, 1,
-    ##                                    5, 10, 20]},
-    ##              scoring='neg_mean_squared_error')
-    ## 
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10985700740.741121, tolerance: 5154478.066487458
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10390588905.999655, tolerance: 4945087.043317857
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 9994046410.470337, tolerance: 4854611.256816057
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11359757501.419374, tolerance: 5029514.394179694
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11798032242.429066, tolerance: 5232437.209593743
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10985700740.519518, tolerance: 5154478.066487458
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10390588905.747108, tolerance: 4945087.043317857
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 9994046410.245531, tolerance: 4854611.256816057
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11359757501.144567, tolerance: 5029514.394179694
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11798032242.117496, tolerance: 5232437.209593743
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10985700718.579382, tolerance: 5154478.066487458
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10390588880.744528, tolerance: 4945087.043317857
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 9994046387.989069, tolerance: 4854611.256816057
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11359757473.93723, tolerance: 5029514.394179694
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11798032211.272367, tolerance: 5232437.209593743
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10985479121.899914, tolerance: 5154478.066487458
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10390336345.832752, tolerance: 4945087.043317857
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 9993821594.415537, tolerance: 4854611.256816057
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11359482677.888142, tolerance: 5029514.394179694
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11797720672.06158, tolerance: 5232437.209593743
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10983484421.493689, tolerance: 5154478.066487458
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10388062493.458475, tolerance: 4945087.043317857
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 9991797928.146349, tolerance: 4854611.256816057
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11357009078.81084, tolerance: 5029514.394179694
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11794916230.360107, tolerance: 5232437.209593743
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10963524458.328148, tolerance: 5154478.066487458
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 10365243428.760094, tolerance: 4945087.043317857
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 9971529354.047935, tolerance: 4854611.256816057
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11332254328.80289, tolerance: 5029514.394179694
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11766841367.954082, tolerance: 5232437.209593743
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 8776379913.512518, tolerance: 5154478.066487458
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 7654631494.867957, tolerance: 4945087.043317857
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 7522327865.577566, tolerance: 4854611.256816057
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 8391190250.43228, tolerance: 5029514.394179694
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 8774474309.356646, tolerance: 5232437.209593743
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 1229021893.0730724, tolerance: 5154478.066487458
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 1138092501.7515926, tolerance: 4945087.043317857
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 1265258270.627636, tolerance: 4854611.256816057
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 2671453643.624834, tolerance: 5029514.394179694
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 3436086150.5433254, tolerance: 5232437.209593743
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 967186187.65135, tolerance: 5154478.066487458
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 244497960.46545792, tolerance: 4854611.256816057
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 12139316.353530884, tolerance: 5232437.209593743
-    ##   positive)
-    ## /Users/rebeccashapiro/Library/r-miniconda/envs/r-reticulate/lib/python3.6/site-packages/sklearn/linear_model/_coordinate_descent.py:531: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Duality gap: 11374209.765106201, tolerance: 4854611.256816057
-    ##   positive)
+#umczznmhci .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
 
-    ##               0             1             2             3        4
-    ## 0  14072.430122  10571.030977  10482.247896  13379.682474  13447.6
-    ## 1  12402.868710   8402.072672   8633.309294  13379.682474   7327.2
-    ## 2  28292.808436  29784.463934  29130.263843  13379.682474  25740.1
-    ## 3  12485.648139  10164.762904   9813.299402  13379.682474  11510.3
-    ## 4  15989.309978   9558.323350   8349.360131  13379.682474    125.9
-    ## 5  24933.139991  27086.589587  28204.347692  13379.682474  36658.4
-    ## 6  13911.063294  14111.518777  13224.673709  13379.682474  12277.9
-    ## 7  10344.440351   9284.569464   9874.725323  13379.682474   5374.2
-    ## 8  11204.403964  11024.902073  12041.721731  13379.682474   1756.4
-    ## 9   4800.740972   3955.811692   4652.419858  13379.682474    506.6
+#umczznmhci .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
 
-    ## (197, 5)
+#umczznmhci .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#umczznmhci .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#umczznmhci .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#umczznmhci .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#umczznmhci .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#umczznmhci .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#umczznmhci .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#umczznmhci .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#umczznmhci .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#umczznmhci .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#umczznmhci .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#umczznmhci .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#umczznmhci .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#umczznmhci .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#umczznmhci .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#umczznmhci .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#umczznmhci .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#umczznmhci .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#umczznmhci .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#umczznmhci .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#umczznmhci .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#umczznmhci .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#umczznmhci .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#umczznmhci .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#umczznmhci .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#umczznmhci .gt_left {
+  text-align: left;
+}
+
+#umczznmhci .gt_center {
+  text-align: center;
+}
+
+#umczznmhci .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#umczznmhci .gt_font_normal {
+  font-weight: normal;
+}
+
+#umczznmhci .gt_font_bold {
+  font-weight: bold;
+}
+
+#umczznmhci .gt_font_italic {
+  font-style: italic;
+}
+
+#umczznmhci .gt_super {
+  font-size: 65%;
+}
+
+#umczznmhci .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+
+<div id="umczznmhci" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+
+<table class="gt_table">
+
+<thead class="gt_col_headings">
+
+<tr>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">
+
+Model Name
+
+</th>
+
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">
+
+Mean Absolute Error
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody class="gt_table_body">
+
+<tr>
+
+<td class="gt_row gt_left">
+
+Random\_Forest
+
+</td>
+
+<td class="gt_row gt_right">
+
+6953.654
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="gt_row gt_left">
+
+Bootstrapped\_Lasso
+
+</td>
+
+<td class="gt_row gt_right">
+
+6805.126
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="gt_row gt_left">
+
+Lasso
+
+</td>
+
+<td class="gt_row gt_right">
+
+6817.436
+
+</td>
+
+</tr>
+
+<tr>
+
+<td class="gt_row gt_left">
+
+Baseline
+
+</td>
+
+<td class="gt_row gt_right">
+
+9742.516
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!--/html_preserve-->
