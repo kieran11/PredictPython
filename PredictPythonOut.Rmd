@@ -7,8 +7,7 @@ output: github_document
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
-## R Markdown
-
+## Analysis
 
 ```{r pckgs}
 
@@ -19,7 +18,15 @@ library(ggplot2)
 
 ```
 
+This is the code for the post [here](https://kieranshah.netlify.app/2020/08/06/prediciton-with-python/). 
 
+The basic process is as follows:
+
+1.  read in the data, and select the variables
+2.  divide the data into training and testing
+3.  create a baseline comparison
+4.  use lasso and random forest algorithms to predict minutes played
+5.  evaluate the models
 
 
 ```{python, echo=TRUE}
@@ -45,8 +52,6 @@ R_plt
 
 ```
 
-
-First, we get the variable names. 
 
 
 ```{python mltData , echo = TRUE}

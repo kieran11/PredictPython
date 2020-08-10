@@ -1,7 +1,20 @@
 Untitled
 ================
 
-## R Markdown
+## Analysis
+
+This is the code for the post
+[here](https://kieranshah.netlify.app/2020/08/06/prediciton-with-python/).
+
+The basic process is as follows:
+
+1.  read in the data, and select the variables
+2.  divide the data into training and testing
+3.  create a baseline comparison
+4.  use lasso and random forest algorithms to predict minutes played
+5.  evaluate the models
+
+<!-- end list -->
 
 ``` python
 
@@ -12,8 +25,6 @@ AnalyticalDS = pd.read_csv('AnalysisDS.csv')
 ```
 
 ![](PredictPythonOut_files/figure-gfm/showR-1.png)<!-- -->
-
-First, we get the variable names.
 
 ``` python
 
@@ -59,7 +70,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#umczznmhci .gt_table {
+#bnwhbawaqc .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -82,7 +93,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   border-left-color: #D3D3D3;
 }
 
-#umczznmhci .gt_heading {
+#bnwhbawaqc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -94,7 +105,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   border-right-color: #D3D3D3;
 }
 
-#umczznmhci .gt_title {
+#bnwhbawaqc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -104,7 +115,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   border-bottom-width: 0;
 }
 
-#umczznmhci .gt_subtitle {
+#bnwhbawaqc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -114,13 +125,13 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   border-top-width: 0;
 }
 
-#umczznmhci .gt_bottom_border {
+#bnwhbawaqc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#umczznmhci .gt_col_headings {
+#bnwhbawaqc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -135,7 +146,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   border-right-color: #D3D3D3;
 }
 
-#umczznmhci .gt_col_heading {
+#bnwhbawaqc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -155,7 +166,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   overflow-x: hidden;
 }
 
-#umczznmhci .gt_column_spanner_outer {
+#bnwhbawaqc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -167,15 +178,15 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   padding-right: 4px;
 }
 
-#umczznmhci .gt_column_spanner_outer:first-child {
+#bnwhbawaqc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#umczznmhci .gt_column_spanner_outer:last-child {
+#bnwhbawaqc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#umczznmhci .gt_column_spanner {
+#bnwhbawaqc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -187,7 +198,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   width: 100%;
 }
 
-#umczznmhci .gt_group_heading {
+#bnwhbawaqc .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -209,7 +220,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   vertical-align: middle;
 }
 
-#umczznmhci .gt_empty_group_heading {
+#bnwhbawaqc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -224,19 +235,19 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   vertical-align: middle;
 }
 
-#umczznmhci .gt_striped {
+#bnwhbawaqc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#umczznmhci .gt_from_md > :first-child {
+#bnwhbawaqc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#umczznmhci .gt_from_md > :last-child {
+#bnwhbawaqc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#umczznmhci .gt_row {
+#bnwhbawaqc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -255,7 +266,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   overflow-x: hidden;
 }
 
-#umczznmhci .gt_stub {
+#bnwhbawaqc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -267,7 +278,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   padding-left: 12px;
 }
 
-#umczznmhci .gt_summary_row {
+#bnwhbawaqc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -277,7 +288,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   padding-right: 5px;
 }
 
-#umczznmhci .gt_first_summary_row {
+#bnwhbawaqc .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -287,7 +298,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   border-top-color: #D3D3D3;
 }
 
-#umczznmhci .gt_grand_summary_row {
+#bnwhbawaqc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -297,7 +308,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   padding-right: 5px;
 }
 
-#umczznmhci .gt_first_grand_summary_row {
+#bnwhbawaqc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -307,7 +318,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   border-top-color: #D3D3D3;
 }
 
-#umczznmhci .gt_table_body {
+#bnwhbawaqc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -316,7 +327,7 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   border-bottom-color: #D3D3D3;
 }
 
-#umczznmhci .gt_footnotes {
+#bnwhbawaqc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -330,13 +341,13 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   border-right-color: #D3D3D3;
 }
 
-#umczznmhci .gt_footnote {
+#bnwhbawaqc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#umczznmhci .gt_sourcenotes {
+#bnwhbawaqc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -350,47 +361,47 @@ AnalyticDS_3 = AnalyticalDS_2_a[['link' ,'mp', 'age', 'FirstSeasonMP', 'fg', 'fg
   border-right-color: #D3D3D3;
 }
 
-#umczznmhci .gt_sourcenote {
+#bnwhbawaqc .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#umczznmhci .gt_left {
+#bnwhbawaqc .gt_left {
   text-align: left;
 }
 
-#umczznmhci .gt_center {
+#bnwhbawaqc .gt_center {
   text-align: center;
 }
 
-#umczznmhci .gt_right {
+#bnwhbawaqc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#umczznmhci .gt_font_normal {
+#bnwhbawaqc .gt_font_normal {
   font-weight: normal;
 }
 
-#umczznmhci .gt_font_bold {
+#bnwhbawaqc .gt_font_bold {
   font-weight: bold;
 }
 
-#umczznmhci .gt_font_italic {
+#bnwhbawaqc .gt_font_italic {
   font-style: italic;
 }
 
-#umczznmhci .gt_super {
+#bnwhbawaqc .gt_super {
   font-size: 65%;
 }
 
-#umczznmhci .gt_footnote_marks {
+#bnwhbawaqc .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
 
-<div id="umczznmhci" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bnwhbawaqc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
 <table class="gt_table">
 
